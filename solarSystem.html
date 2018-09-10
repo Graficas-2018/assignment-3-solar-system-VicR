@@ -1,0 +1,47 @@
+<!--
+  Three.js Solar System
+  Víctor Rendón Suárez | A01022462
+  10/09/2018
+-->
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Three.js Solar System</title>
+
+  <link rel="stylesheet" href="../libs/jquery-ui/jquery-ui.css" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/solarSystem.css" />
+
+  <script src="../libs/jquery-3.3.1/jquery-3.3.1.js"></script>
+  <script src="../libs/jquery-ui/jquery-ui.js"></script>
+  <script src="../libs/three.js/three.js"></script>
+  <script src="../libs/three.js/controls/OrbitControls.js"></script>
+
+  <script src="solarSystem.js"></script>
+  <script src="sceneHandler.js"></script>
+
+  <script type="text/javascript">
+  	$(function() {
+  		var canvas = document.getElementById("webglcanvas");
+  		// create the scene
+  		createScene(canvas);
+  		// initialize the controls
+  		initControls();
+      // Run the run loop
+      run();
+  	});
+  </script>
+</head>
+
+<body>
+  <div id="container">
+    <canvas id="webglcanvas" width=1500 height=850></canvas>
+  	<div id="title">
+  		Three.js Solar System <br/> Víctor Rendón S.
+  	</div>
+  	<div id="prompt">
+  		Drag the mouse to rotate the camera<br>Use the scroll wheel to zoom.
+  	</div>
+  </div>
+</body>
+</html>
