@@ -125,6 +125,11 @@ var position = null,
 
 function createTexture(url) {
   var texture = new THREE.TextureLoader().load(url);
+  return new THREE.MeshPhongMaterial({ map: texture });
+}
+
+function createSun(url) {
+  var texture = new THREE.TextureLoader().load(url);
   return new THREE.MeshBasicMaterial({ map: texture });
 }
 
@@ -263,7 +268,6 @@ function animate() {
   uranusGroup.rotation.y += addRotation(0.68, fract);
   neptuneGroup.rotation.y += addRotation(0.54, fract);
   plutoGroup.rotation.y += addRotation(0.53, fract);
-  // asteroidGroup.rotation.y += addRotation(2, fract);
   // Moon rotation speeds
   phobos.rotation.y += addRotation(2.2, fract);
   deimos.rotation.y += addRotation(1.5, fract);
@@ -375,14 +379,15 @@ function createScene(canvas) {
   // Create the sphere geometry
   var geometry = new THREE.SphereGeometry(Math.sqrt(2), 120, 120);
   // Sun
-  texture = createTexture(sunUrl);
+  texture = createSun(sunUrl);
   // Function receives (geometry, texture, posX, scale)
   sun = createPlanet(geometry, texture, 0, 15);
   sunGroup.add(sun);
 
-  pointLight = new THREE.PointLight (0x0000ff, 0.6, 200);
+  pointLight = new THREE.PointLight (0xffffff, 2.5, 0);
   pointLight.position.set(0, 0, 0);
-  sunGroup.add(pointLight);
+  pointLight.castHadow = true;
+  root.add(pointLight);
 
   // Create Planet group
   sunGroup.add(planetGroup);
@@ -491,7 +496,7 @@ function createScene(canvas) {
   umbrielGroup.add(umbriel);
   uranus.add(umbrielGroup, addOrbit(3.1));
     // Ring
-  uranus.add(addRing(1.6, 0.05, 90, 0x98e2fa));
+  uranus.add(addRing(2, 0.05, 0, 0xffffff));
 
   // Neptune
   texture = createTexture(neptuneUrl);
